@@ -60,7 +60,7 @@ class: middle, center
 ```{r hex, fig.align='center', echo = FALSE, out.width=150} 
     knitr::include_graphics("img/hex.png")
 ```
-# 521 Lab2
+# DSCI 521 lab2
 
 ---
 
@@ -72,9 +72,9 @@ class: center, middle
 
 ---
 
-## Group lab2
+## Group lab
 
-Questions
+**Questions**
 
 1. Create a new repository
 2. Clone and make changes 
@@ -91,7 +91,7 @@ Questions
 
 --
 
-- We will count the commits in the group GitHub repo
+- We will count the commits on the GitHub repo of the group
 
 --
 
@@ -102,7 +102,7 @@ _Note: In the questions were links to personal repository are requested, you pas
 
 
 class: inverse, middle, center
-## Zoom use
+## Zoom
 
 Remember to request help!
 
