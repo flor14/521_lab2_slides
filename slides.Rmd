@@ -1,6 +1,6 @@
 ---
-title: "DSCI 521 - Lecture 3"
-subtitle: "Branches, forks, and streams... Welcome to the Git nature walk!"  
+title: "DSCI 521 - Lab 2"
+subtitle: ""  
 author: 
   - "MDS 2021/22"
 output:
