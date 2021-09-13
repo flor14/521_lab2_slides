@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>DSCI 521 - Lecture 3</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MDS 2021/22" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+
+class: middle, center
+
+&lt;img src="img/hex.png" width="150" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+
+class: bottom
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+### DSCI 521 - Lecture 3
+### **Branches, forks, and streams... Welcome to the Git nature walk!**
+
+ .large[#### Computing Platforms for Data Science - UBC MDS 2021/22
+]]
+
+
+---
+
+## Lecture 3
+
+1. **Develop a feature on a branch** in a Git repo.
+
+--
+
+2. **Merge** the feature branch with the master branch.
+
+--
+
+3. Create a **fork** of an existing GitHub repo.
+
+--
+
+4. Open a **pull request** from your forked repo to the upstream repo
+
+
+
+---
+
+class: center, middle, inverse
+
+# BRANCHES
+separate work that is happening on the main/master branch of the repo 
+
+---
+
+## Why to use them?
+
+* You don't want the repository's default branch to be updated with every commit of a half-finished feature.
+
+--
+
+* When features are completed, their branches will be merged into the main branch, often through a "pull request" where code is reviewed before it is merged. 
+
+--
+
+
+
+&lt;img src="img/represent.png" width="200" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Feature-based development
+
+&lt;img src="img/branches-house-analogy.png" width="400" style="display: block; margin: auto;" /&gt;
+
+
+&lt;img src="img/house.jfif" width="400" style="display: block; margin: auto;" /&gt;
+
+.footnote[[Unsplash](https://unsplash.com)]
+
+---
+
+class: middle, center, inverse
+
+# How branches show up in the log output
+
+---
+
+class: center, middle
+
+
+## `main` is the default branch
+
+
+
+
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
+
+---
+
+### How branches show up in the log output
+
+```bash
+HEAD -&gt; main
+```
+
+--
+
+**main** is your default local branch
+(or **master**) 
+
+--
+
+**HEAD** is where you currently are   
+
+--
+
+#### _You are on the main branch_
+
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
+
+---
+
+### How branches show up in the log output
+
+```bash
+origin/main
+```
+
+--
+
+**origin** is a nickname for your remote repo on GitHub
+
+--
+
+**origin/main** is the main branch on your GitHub repo
+
+--
+
+#### _You Github repo is on the main branch_
+
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
+
+---
+
+### How branches show up in the log output
+
+```bash
+origin/HEAD
+```
+--
+
+You don't need to be concern about origin/HEAD, it just point to the default remote branch, 
+which will always be main unless you mess around with the settings on the GitHub webpage.
+
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
+
+
+---
+
+class: center, inverse, middle
+
+# How do we create a branch?
+
+
+
+---
+
+
+## Switch to a branch
+#### `git switch`
+
+
+## Switch to a new branch
+#### `git switch -c &lt;name new branch&gt;`
+#### `git switch -c lecture-todo`
+
+
+.footnote["It is good practice to give branches a name that succinctly describes the feature that you want to develop."]
+
+
+---
+
+class: middle, center
+
+&lt;img src="img/switch.png" width="900" style="display: block; margin: auto;" /&gt;
+
+
+
+
+
+
+---
+
+
+class: inverse, center, middle
+
+# SEEING HOW BRANCHES ARE RELATED
+
+
+---
+
+## In the shell
+
+
+* `git log --oneline --all --graph`
+
+
+&lt;img src="img/tree.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## In VS Code
+
+* `code .`
+
+&lt;img src="img/vscode.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+To merge the branches run `git merge lecture-todo`
+
+---
+
+class: inverse, center, middle
+# FORKS
+
+---
+class: middle, center
+
+#### If you want the code from someone else's repository, where you are not a member or official collaborator, **then you can clone it and use it on computer.** 
+
+--
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+
+#### However, **you cannot push your changes back to the GitHub repository** because you don't have the write permissions to that repository.
+
+]
+
+
+
+---
+
+### How can I fork a repository?
+
+Forks are copies of others repositories on GitHub that you own.
+
+**"upstream" repository** the one you forked from
+
+ **origin** your repository
+
+&lt;img src="img/2.png" width="800" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+
+class: center, middle
+
+&lt;img src="img/fork.png" width="900" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+### How can I start developing in a forked repo
+
+You clone the fork of YOUR repo, not the original repo
+
+
+&lt;img src="img/3.png" width="800" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+class: center, middle
+&lt;img src="img/5.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: center, middle
+&lt;img src="img/6.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: middle, inverse, center
+
+# DEVELOPING IN A FORKED REPO
+
+---
+
+### Work in a new local branch
+
+It is good practice to always create a branch when you are about to add changes to a fork
+
+```bash
+git switch -c new-branch
+```
+
+&lt;img src="img/7.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+
+
+### When to merge?
+When you are working on a branch you have to push your branch to GitHub and ask for it to be merged via a pull request. 
+
+&lt;img src="img/8.png" width="600" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+## Pushing to a new branch
+
+&lt;img src="img/gitpush_newbranch.png" width="900" style="display: block; margin: auto;" /&gt;
+
+.footnote[the word "upstream" is not referring to the GitHub branch you forked from. Instead, it is referring to a branch that will be created on your repo (origin).]
+
+
+
+---
+
+## Pushing to a new branch
+
+```bash
+git push --set-upstream origin new-branch
+```
+&lt;img src="img/8.png" width="600" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: middle, center
+&lt;img src="img/pullrequest.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+
+.footnote[The Turing Way and Scriberia (2020)]
+
+---
+
+
+class: inverse, center, middle
+
+# CREATING A PULL REQUEST
+
+---
+
+## Pull request
+
+To create PR, you click the green bottom "Compare and pull request".
+- Add reviewers if necessary
+- If they approved it the PR could be merged
+
+&lt;img src="img/pr.png" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle, center
+
+&lt;img src="img/9.png" width="900" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: middle, center
+
+&lt;img src="img/prdemo.png" width="900" style="display: block; margin: auto;" /&gt;
+
+---
+class: middle, center
+
+&lt;img src="img/prdemo_merged.png" width="900" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: inverse, center, middle
+
+# KEEPING YOUR REMOTE (ORIGIN) UP TO DATE WITH THE UPSTREAM REMOTE 
+
+---
+
+### New commit in upstream remote
+
+&lt;img src="img/11.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### Fork again? 
+
+&lt;img src="img/12.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+### `git remote -v`
+
+```bash
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (fetch)
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (push)
+```
+
+
+
+
+
+
+---
+
+### Add remote and pull
+
+
+```bash
+git remote add upstream https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git
+git pull upstream master`
+```
+
+
+&lt;img src="img/13.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Push to origin
+
+```bash
+git push
+```
+
+&lt;img src="img/14.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Push to the forked repo
+
+To update our forked repo, we can now push as usually by typing git push, since the default behavior is git push origin master.
+
+
+
+```bash
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (fetch)
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (push)
+upstream  https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git (fetch)
+upstream  https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git (push)
+```
+
+---
+
+## Markdown
+
+.pull-left[
+
+```bash
+- [x] Introduce lecture
+- [ ] Explain branches
+- [ ] Explain forks
+```
+]
+
+.pull-right[
+
+&lt;img src="img/list.png" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+.footnote[[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)]
+
+
+
+---
+
+## Markdown
+
+.pull-left[
+&lt;img src="img/code.png" width="200" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+&lt;img src="img/preview.png" width="200" style="display: block; margin: auto;" /&gt;
+
+]
+
+.footnote[[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)]
+
+
+
+
+---
+
+class: middle, center, inverse
+
+## Thank you!
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
