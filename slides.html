@@ -33,503 +33,101 @@
 
 
 
-
-
-
 class: middle, center
 
 &lt;img src="img/hex.png" width="150" style="display: block; margin: auto;" /&gt;
-
-
----
-
-
-class: bottom
-
-.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-### DSCI 521 - Lecture 3
-### **Branches, forks, and streams... Welcome to the Git nature walk!**
-
- .large[#### Computing Platforms for Data Science - UBC MDS 2021/22
-]]
-
-
----
-
-## Lecture 3
-
-1. **Develop a feature on a branch** in a Git repo.
-
---
-
-2. **Merge** the feature branch with the master branch.
-
---
-
-3. Create a **fork** of an existing GitHub repo.
-
---
-
-4. Open a **pull request** from your forked repo to the upstream repo
-
-
-
----
-
-class: center, middle, inverse
-
-# BRANCHES
-separate work that is happening on the main/master branch of the repo 
-
----
-
-## Why to use them?
-
-* You don't want the repository's default branch to be updated with every commit of a half-finished feature.
-
---
-
-* When features are completed, their branches will be merged into the main branch, often through a "pull request" where code is reviewed before it is merged. 
-
---
-
-
-
-&lt;img src="img/represent.png" width="200" style="display: block; margin: auto;" /&gt;
-
-
----
-
-## Feature-based development
-
-&lt;img src="img/branches-house-analogy.png" width="400" style="display: block; margin: auto;" /&gt;
-
-
-&lt;img src="img/house.jfif" width="400" style="display: block; margin: auto;" /&gt;
-
-.footnote[[Unsplash](https://unsplash.com)]
-
----
-
-class: middle, center, inverse
-
-# How branches show up in the log output
+# 521 Lab2
 
 ---
 
 class: center, middle
 
-
-## `main` is the default branch
-
-
-
-
-.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
-
----
-
-### How branches show up in the log output
-
-```bash
-HEAD -&gt; main
-```
-
---
-
-**main** is your default local branch
-(or **master**) 
-
---
-
-**HEAD** is where you currently are   
-
---
-
-#### _You are on the main branch_
-
-.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
-
----
-
-### How branches show up in the log output
-
-```bash
-origin/main
-```
-
---
-
-**origin** is a nickname for your remote repo on GitHub
-
---
-
-**origin/main** is the main branch on your GitHub repo
-
---
-
-#### _You Github repo is on the main branch_
-
-.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
-
----
-
-### How branches show up in the log output
-
-```bash
-origin/HEAD
-```
---
-
-You don't need to be concern about origin/HEAD, it just point to the default remote branch, 
-which will always be main unless you mess around with the settings on the GitHub webpage.
-
-.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
-
-
----
-
-class: center, inverse, middle
-
-# How do we create a branch?
+## The recordings of the lectures will be in the media gallery
 
 
 
 ---
 
+## Group lab2
 
-## Switch to a branch
-#### `git switch`
+Questions
+
+1. Create a new repository
+2. Clone and make changes 
+3. Create a branch and pull request (PR)
+4. Merge Conflict
+5. Fork and PR
+6. _Optional_
+
+---
+
+## Group lab
+
+- You all complete the lab but you submit one file to Gradescope.
+
+--
+
+- We will count the commits in the group GitHub repo
+
+--
+
+_Note: In the questions were links to personal repository are requested, you paste 3-4 links._
 
 
-## Switch to a new branch
-#### `git switch -c &lt;name new branch&gt;`
-#### `git switch -c lecture-todo`
+---
 
 
-.footnote["It is good practice to give branches a name that succinctly describes the feature that you want to develop."]
+class: inverse, middle, center
+## Zoom use
 
+Remember to request help!
 
 ---
 
 class: middle, center
-
-&lt;img src="img/switch.png" width="900" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="img/good_message.png" width="900" style="display: block; margin: auto;" /&gt;
 
 
-
-
+.footnote[[XKCD comics](https://xkcd.com/1296/)]
 
 ---
 
+## Good commit messages
 
-class: inverse, center, middle
-
-# SEEING HOW BRANCHES ARE RELATED
-
-
----
-
-## In the shell
-
-
-* `git log --oneline --all --graph`
-
-
-&lt;img src="img/tree.png" width="700" style="display: block; margin: auto;" /&gt;
-
-
----
-
-## In VS Code
-
-* `code .`
-
-&lt;img src="img/vscode.png" width="700" style="display: block; margin: auto;" /&gt;
-
-
-To merge the branches run `git merge lecture-todo`
-
----
-
-class: inverse, center, middle
-# FORKS
-
----
-class: middle, center
-
-#### If you want the code from someone else's repository, where you are not a member or official collaborator, **then you can clone it and use it on computer.** 
+For all commits in this lab, please provide a a short descriptive message, which completes the sentence "this commit will..." and starts with a capital letter.
 
 --
 
-.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+#### Bad messages:
+- fixes an error
+- added new code
 
-#### However, **you cannot push your changes back to the GitHub repository** because you don't have the write permissions to that repository.
+--
 
-]
-
-
-
----
-
-### How can I fork a repository?
-
-Forks are copies of others repositories on GitHub that you own.
-
-**"upstream" repository** the one you forked from
-
- **origin** your repository
-
-&lt;img src="img/2.png" width="800" style="display: block; margin: auto;" /&gt;
-
-
+#### Good messages:
+- Fix an error in the notebook export
+- Make the README more welcoming
 
 
 ---
 
-class: center, middle
-
-&lt;img src="img/fork.png" width="900" style="display: block; margin: auto;" /&gt;
-
-
-
----
-
-### How can I start developing in a forked repo
-
-You clone the fork of YOUR repo, not the original repo
-
-
-&lt;img src="img/3.png" width="800" style="display: block; margin: auto;" /&gt;
-
-
-
-
----
-class: center, middle
-&lt;img src="img/5.png" width="700" style="display: block; margin: auto;" /&gt;
-
-
----
-class: center, middle
-&lt;img src="img/6.png" width="700" style="display: block; margin: auto;" /&gt;
-
-
----
-
-class: middle, inverse, center
-
-# DEVELOPING IN A FORKED REPO
-
----
-
-### Work in a new local branch
-
-It is good practice to always create a branch when you are about to add changes to a fork
+## Amending the most recent commit message
 
 ```bash
-git switch -c new-branch
+git commit --amend -m "Fix an error in the notebook export"
 ```
 
-&lt;img src="img/7.png" width="700" style="display: block; margin: auto;" /&gt;
+--
 
-
----
-
-
-
-### When to merge?
-When you are working on a branch you have to push your branch to GitHub and ask for it to be merged via a pull request. 
-
-&lt;img src="img/8.png" width="600" style="display: block; margin: auto;" /&gt;
-
-
-
----
-
-## Pushing to a new branch
-
-&lt;img src="img/gitpush_newbranch.png" width="900" style="display: block; margin: auto;" /&gt;
-
-.footnote[the word "upstream" is not referring to the GitHub branch you forked from. Instead, it is referring to a branch that will be created on your repo (origin).]
-
-
-
----
-
-## Pushing to a new branch
+### Extra command
 
 ```bash
-git push --set-upstream origin new-branch
-```
-&lt;img src="img/8.png" width="600" style="display: block; margin: auto;" /&gt;
-
-
----
-
-class: middle, center
-&lt;img src="img/pullrequest.jpg" width="600" style="display: block; margin: auto;" /&gt;
-
-
-.footnote[The Turing Way and Scriberia (2020)]
-
----
-
-
-class: inverse, center, middle
-
-# CREATING A PULL REQUEST
-
----
-
-## Pull request
-
-To create PR, you click the green bottom "Compare and pull request".
-- Add reviewers if necessary
-- If they approved it the PR could be merged
-
-&lt;img src="img/pr.png" width="500" style="display: block; margin: auto;" /&gt;
-
----
-
-class: middle, center
-
-&lt;img src="img/9.png" width="900" style="display: block; margin: auto;" /&gt;
-
-
----
-class: middle, center
-
-&lt;img src="img/prdemo.png" width="900" style="display: block; margin: auto;" /&gt;
-
----
-class: middle, center
-
-&lt;img src="img/prdemo_merged.png" width="900" style="display: block; margin: auto;" /&gt;
-
-
----
-
-class: inverse, center, middle
-
-# KEEPING YOUR REMOTE (ORIGIN) UP TO DATE WITH THE UPSTREAM REMOTE 
-
----
-
-### New commit in upstream remote
-
-&lt;img src="img/11.png" width="700" style="display: block; margin: auto;" /&gt;
-
-
----
-
-### Fork again? 
-
-&lt;img src="img/12.png" width="700" style="display: block; margin: auto;" /&gt;
-
----
-
-
-### `git remote -v`
-
-```bash
-origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (fetch)
-origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (push)
-```
-
-
-
-
-
-
----
-
-### Add remote and pull
-
-
-```bash
-git remote add upstream https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git
-git pull upstream master`
-```
-
-
-&lt;img src="img/13.png" width="700" style="display: block; margin: auto;" /&gt;
-
----
-
-### Push to origin
-
-```bash
-git push
-```
-
-&lt;img src="img/14.png" width="700" style="display: block; margin: auto;" /&gt;
-
-
----
-
-## Push to the forked repo
-
-To update our forked repo, we can now push as usually by typing git push, since the default behavior is git push origin master.
-
-
-
-```bash
-origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (fetch)
-origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (push)
-upstream  https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git (fetch)
-upstream  https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git (push)
+`git --oneline -p`
 ```
 
 ---
 
-## Markdown
 
-.pull-left[
-
-```bash
-- [x] Introduce lecture
-- [ ] Explain branches
-- [ ] Explain forks
-```
-]
-
-.pull-right[
-
-&lt;img src="img/list.png" width="300" style="display: block; margin: auto;" /&gt;
-]
-
-.footnote[[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)]
-
-
-
----
-
-## Markdown
-
-.pull-left[
-&lt;img src="img/code.png" width="200" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-
-&lt;img src="img/preview.png" width="200" style="display: block; margin: auto;" /&gt;
-
-]
-
-.footnote[[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)]
-
-
-
-
----
-
-class: middle, center, inverse
-
-## Thank you!
-
----
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
